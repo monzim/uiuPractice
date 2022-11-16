@@ -5,7 +5,6 @@ void evaluateEquation();
 void incremnetSalary();
 
 void main() {
-  // check if the number ins even or odd
   int value;
   printf("Enter a number: ");
   scanf("%i", &value);
@@ -16,9 +15,7 @@ void main() {
     evaluateEquation();
   } else if (value == 3) {
     incremnetSalary();
-  }
-
-  else {
+  } else {
     printf("Invalid input. Goodbye!");
     return;
   }
