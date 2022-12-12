@@ -1,5 +1,5 @@
 /*
-PROBLEM: Write a program that converts a temperature from Fahrenheit to Celsius.
+PROBLEM-1: Write a program that converts a temperature from Fahrenheit to Celsius.
 
 Example:
 Enter the temperature in Fahrenheit: 32

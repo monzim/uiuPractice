@@ -1,6 +1,6 @@
 /*
-PROBLEM: You have given some notes of 100, 50, 20, 10, 5, 2, 1 Write a program that asks the user to enter an amount of
-money and then displays the smallest number of notes that will combine to give that amount.
+PROBLEM-2: You have given some notes of 100, 50, 20, 10, 5, 2, 1 Write a program that asks the user to enter an amount
+of money and then displays the smallest number of notes that will combine to give that amount.
 */
 
 #include <stdio.h>
