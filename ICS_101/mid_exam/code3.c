@@ -24,12 +24,14 @@ int main(int argc, char *argv[]) {
   printf("Enter the work experience: ");
   scanf("%d", &work_experience);
 
-  if (work_experience >= 12 && family_members >= 5) {
+  if (work_experience >= 12 && work_experience < 20 && family_members >= 5) {
     salary = salary + salary * 0.15;
   } else if (work_experience >= 20 && family_members >= 7) {
-    salary = salary + salary * 0.25;
+    salary = salary * 1.25;
   } else if (work_experience < 5 && family_members >= 10) {
     salary = salary + salary * 0.12;
+  } else {
+    printf("No increment \n");
   }
 
   printf("The salary is: %.2f \n", salary);
