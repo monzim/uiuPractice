@@ -1,0 +1,9 @@
+Recursion is a method of solving a problem where the solution depends on solutions to smaller instances of the same problem (as opposed to iteration). The approach can be applied to many types of problems, and recursion is one of the central ideas of computer science.
+
+
+Problem 1: compute the factorial of a given number.
+Problem 2: generate the Fibonacci sequence.
+Problem 3: reverse a string using recursion.
+Problem 4: check if a number is a prime number using recursion.
+Problem 5: compute the sum of the elements in a given array using recursion.
+Problem 6: compute the product of the elements in a given array using recursion.

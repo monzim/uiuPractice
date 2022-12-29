@@ -1,0 +1,9 @@
+Write a program to calculate the factorial of a given number. For example, the factorial of 5 is 5 * 4 * 3 * 2 * 1 = 120.
+
+Write a program to generate the first n terms of the Fibonacci sequence. The Fibonacci sequence is a series of numbers in which each number is the sum of the two preceding ones, starting from 0 and 1. For example, the first 10 terms of the Fibonacci sequence are 0, 1, 1, 2, 3, 5, 8, 13, 21, 34.
+
+Write a program to find the greatest common divisor (GCD) of two numbers. The GCD is the largest number that divides both numbers without a remainder. For example, the GCD of 15 and 25 is 5.
+
+Write a program to check if a given number is prime or not. A prime number is a positive integer greater than 1 that has no positive integer divisors other than 1 and itself. For example, 2, 3, 5, and 7 are prime numbers, but 4, 6, and 8 are not.
+
+Write a program to find the average of a given set of numbers. The average is calculated by adding all of the numbers together and dividing the sum by the total number of numbers. For example, the average of the numbers 4, 5, and 6 is (4 + 5 + 6) / 3 = 5.
