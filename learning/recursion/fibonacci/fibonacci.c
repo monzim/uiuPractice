@@ -2,13 +2,10 @@
 
 void fibonacci(int n) {
   if (n == 0 || n == 1) {
-    // return 0;
     printf("fibonacci(%d) = 0 \r \n", n);
     return;
   }
-
   fibonacci(n - 1);
-
   int k = n - 1 + n + 2;
   printf("fibonacci(%d) = %d \r \n", n, k);
 }

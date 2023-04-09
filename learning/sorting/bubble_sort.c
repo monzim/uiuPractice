@@ -1,6 +1,7 @@
-#include "stdlib.h"
 #include <stdio.h>
 #include <time.h>
+
+#include "stdlib.h"
 
 void bubble_sort(int arr[], int size) {
   int flag, temp;
