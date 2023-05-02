@@ -1,17 +1,18 @@
 #include <stdio.h>
 
 void fibonacci(int n) {
-  if (n == 0 || n == 1) {
-    printf("fibonacci(%d) = 0 \r \n", n);
-    return;
+  static int a = 0, b = 1, c;
+  if (n > 0) {
+    c = a + b;
+    a = b;
+    b = c;
+    printf("%d, ", a);
+    fibonacci(n - 1);
   }
-  fibonacci(n - 1);
-  int k = n - 1 + n + 2;
-  printf("fibonacci(%d) = %d \r \n", n, k);
 }
 
 int main(int argc, char *argv[]) {
   int k;
-  fibonacci(5);
+  fibonacci(10);
   return 0;
 }
