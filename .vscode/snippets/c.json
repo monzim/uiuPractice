@@ -3,13 +3,12 @@
     "prefix": "sst",
     "body": [
       "#include <stdio.h>",
+      "#include <stdlib.h>",
+      "#include <string.h>",
       "",
-      "int main(int argc, char *argv[]) {",
-      "",
-      " int k;",
-      "  ${1:code_here}",
-      "",
-      "  return 0;",
+      "int main(int argc, char *argv[]) { ",
+      "${1:int num = 0;}",
+      "return EXIT_SUCCESS; ",
       "}",
       ""
     ],
@@ -25,7 +24,7 @@
     "description": "Input number"
   },
   "BubbleSort": {
-    "prefix": "aamdobubble",
+    "prefix": "ggdobubble",
     "body": [
       "void bubble_sort(int arr[], int size) {",
       "  int temp, flag;",
@@ -47,7 +46,7 @@
     "description": "BubbleSort"
   },
   "Print Array": {
-    "prefix": "printarray",
+    "prefix": "ggprintarray",
     "body": [
       "void print_array(int arr[], int size) {",
       "  for (int i = 0; i < size; i++) {",
@@ -59,7 +58,7 @@
     "description": "Print Array"
   },
   "Selection Sort": {
-    "prefix": "aamselectionsort",
+    "prefix": "ggselectionsort",
     "body": [
       "void selection_sort(int arr[], int size) {",
       "  int temp, minIndex;",
@@ -81,7 +80,7 @@
     "description": "Selection Sort"
   },
   "I need a plus": {
-    "prefix": "aamgivemeplus",
+    "prefix": "gggivemeplus",
     "body": [
       "int n;",
       "  printf(\"odd n: \");",
@@ -107,7 +106,7 @@
     "description": "I need a plus"
   },
   "multi array": {
-    "prefix": "aamgivememulti",
+    "prefix": "gggivememulti",
     "body": [
       "  int row, col;",
       "  scanf(\"%d %d\", &row, &col);",
@@ -131,7 +130,7 @@
     "description": "multi array"
   },
   "Reverse a matrix": {
-    "prefix": "aamreversematrix",
+    "prefix": "ggreversematrix",
     "body": [
       "int rev_arr[row][col];",
       "  for (int i = row - 1; i >= 0; i--) {",
@@ -143,7 +142,7 @@
     "description": "Reverse a matrix"
   },
   "Remove duplicates": {
-    "prefix": "aamremoveduplicate",
+    "prefix": "ggremoveduplicate",
     "body": [
       "int *remove_duplicates(int arr[], int size, int *new_size) {",
       "  int uc = 0;",
@@ -173,5 +172,556 @@
       "}"
     ],
     "description": "Remove duplicates"
+  },
+  "shift string": {
+    "prefix": "ggshiftstring",
+    "body": [
+      "void shift_string(char *str) {",
+      "  int len = strlen(str);",
+      "  int i;",
+      "  for (i = 0; i < len; i++) {",
+      "    str[i] = (str[i] - 'a' + 1) % 26 + 'a';",
+      "  }",
+      "}"
+    ],
+    "description": "shift string"
+  },
+  "read file": {
+    "prefix": "ggreadfile",
+    "body": [
+      "int readFile(const char *f, char *buffer, int bs) {",
+      "  FILE *fp = fopen(f, \"r\");",
+      "  if (fp == NULL) {",
+      "    return -1;",
+      "  }",
+      "",
+      "  int num_read = fread(buffer, sizeof(char), bs, fp);",
+      "  fclose(fp);",
+      "",
+      "  return num_read;",
+      "}"
+    ],
+    "description": "read file"
+  },
+  "read file and print": {
+    "prefix": "ggreadfileandprint",
+    "body": [
+      "int readFileAndPrint(const char *filename) {",
+      "  char buffer[BUFFER_SIZE];",
+      "  int num_read;",
+      "  FILE *fp;",
+      "",
+      "  fp = fopen(filename, \"r\");",
+      "  if (fp == NULL) {",
+      "    printf(\"Error\\n\");",
+      "    return -1;",
+      "  }",
+      "",
+      "  num_read = fread(buffer, sizeof(char), BUFFER_SIZE, fp);",
+      "  fclose(fp);",
+      "",
+      "  printf(\"Read %d bytes from file: %s\\n\", num_read, buffer);",
+      "",
+      "  return num_read;",
+      "}",
+      ""
+    ],
+    "description": "read file and print"
+  },
+  "write file": {
+    "prefix": "ggwritefile",
+    "body": [
+      "int writeFile(const char *f, char *data, int dataLen) {",
+      "  FILE *fp = fopen(f, \"w\");",
+      "  if (fp == NULL) {",
+      "    return -1;",
+      "  }",
+      "",
+      "  int nw = fwrite(data, sizeof(char), dataLen, fp);",
+      "  fclose(fp);",
+      "",
+      "  return nw;",
+      "}",
+      ""
+    ],
+    "description": "write file"
+  },
+  "input stucture": {
+    "prefix": "struct",
+    "body": ["typedef struct ${1:Hello}{", "  int ${2:type};", "} ${1:Hello};"],
+    "description": "input stucture"
+  },
+  "input stucture with pointer": {
+    "prefix": "ggstructp",
+    "body": [
+      "typedef struct ${1:Hello}{",
+      "  int ${2:type};",
+      "} ${1:Hello};",
+      "",
+      "typedef ${1:Hello} *${1:Hello}P;"
+    ],
+    "description": "input stucture with pointer"
+  },
+
+  "input stucture with pointer and function": {
+    "prefix": "structpf",
+    "body": [
+      "typedef struct ${1:Hello}{",
+      "  int ${2:type};",
+      "} ${1:Hello};",
+      "",
+      "typedef ${1:Hello} *${1:Hello}P;",
+      "",
+      "void ${1:Hello}_init(${1:Hello}P ${1:hello}) {",
+      "  ${1:hello}->${2:type} = 0;",
+      "}"
+    ],
+    "description": "input stucture with pointer and function"
+  },
+  "swap value": {
+    "prefix": "swap",
+    "body": [
+      "void swap(int *a, int *b) {",
+      "    int temp = *a;",
+      "    *a = *b;",
+      "    *b = temp;",
+      "}",
+      ""
+    ],
+    "description": "swap value"
+  },
+  "copy string": {
+    "prefix": "copy",
+    "body": [
+      "void copy_string(char *dest, const char *src) {",
+      "    while (*src) {",
+      "        *dest++ = *src++;",
+      "    }",
+      "    *dest = '\\0';",
+      "}",
+      ""
+    ],
+    "description": "copy string"
+  },
+  "string length": {
+    "prefix": "ggstringlength",
+    "body": [
+      "size_t str_length(const char *str) {",
+      "    const char *s;",
+      "    for (s = str; *s; ++s);",
+      "    return (size_t)(s - str);",
+      "}",
+      ""
+    ],
+    "description": "string length"
+  },
+  "findmax": {
+    "prefix": "ggfindmax",
+    "body": [
+      "int find_max(const int *arr, size_t size) {",
+      "    int max = arr[0];",
+      "    for (size_t i = 1; i < size; ++i) {",
+      "        if (arr[i] > max) {",
+      "            max = arr[i];",
+      "        }",
+      "    }",
+      "    return max;",
+      "}",
+      ""
+    ],
+    "description": "findmax"
+  },
+  "Reverse array": {
+    "prefix": "ggreverse_array",
+    "body": [
+      "void reverse_array(int *arr, size_t size) {",
+      "    for (size_t i = 0; i < size / 2; ++i) {",
+      "        int temp = arr[i];",
+      "        arr[i] = arr[size - i - 1];",
+      "        arr[size - i - 1] = temp;",
+      "    }",
+      "}",
+      ""
+    ],
+    "description": "Reverse array"
+  },
+  "factorial": {
+    "prefix": "ggfactorial",
+    "body": [
+      "unsigned int factorial(unsigned int n) {",
+      "    if (n == 0) {",
+      "        return 1;",
+      "    }",
+      "    return n * factorial(n-1);",
+      "}",
+      ""
+    ],
+    "description": "factorial"
+  },
+  "fibonacci": {
+    "prefix": "ggfibonacci",
+    "body": [
+      "unsigned int fibonacci(unsigned int n) {",
+      "    if (n <= 1) {",
+      "        return n;",
+      "    }",
+      "    return fibonacci(n-1) + fibonacci(n-2);",
+      "}",
+      ""
+    ],
+    "description": "fibonacci"
+  },
+  "power": {
+    "prefix": "ggpower",
+    "body": [
+      "double power(double x, int n) {",
+      "    if (n == 0) {",
+      "        return 1;",
+      "    }",
+      "    if (n < 0) {",
+      "        return 1 / power(x, -n);",
+      "    }",
+      "    if (n % 2 == 0) {",
+      "        return power(x * x, n / 2);",
+      "    } else {",
+      "        return x * power(x * x, (n - 1) / 2);",
+      "    }",
+      "}",
+      ""
+    ],
+    "description": "power"
+  },
+  "print array": {
+    "prefix": "ggprint_array_recursively",
+    "body": [
+      "void print_array_recursively(const int *arr, size_t size) {",
+      "    if (size == 0) {",
+      "        printf(\"\\n\");",
+      "        return;",
+      "    }",
+      "    printf(\"%d \", arr[0]);",
+      "    print_array_recursively(arr+1, size-1);",
+      "}",
+      ""
+    ],
+    "description": "power"
+  },
+  "is_prime": {
+    "prefix": "ggpis_prime",
+    "body": [
+      "bool is_prime(unsigned int n) {",
+      "    if (n < 2) {",
+      "        return false;",
+      "    }",
+      "    for (unsigned int i = 2; i * i <= n; ++i) {",
+      "        if (n % i == 0) {",
+      "            return false;",
+      "        }",
+      "    }",
+      "    return true;",
+      "}",
+      ""
+    ],
+    "description": "is_prime"
+  },
+  "gcd": {
+    "prefix": "gggcd",
+    "body": [
+      "unsigned int gcd(unsigned int a, unsigned int b) {",
+      "    if (b == 0) {",
+      "        return a;",
+      "    }",
+      "    return gcd(b, a % b);",
+      "}",
+      ""
+    ],
+    "description": "gcd"
+  },
+  "merge_sort": {
+    "prefix": "ggmerge_sort",
+    "body": [
+      "void merge_sort(int *arr, int left, int right) {",
+      "    if (left >= right) {",
+      "        return;",
+      "    }",
+      "    int middle = (left + right) / 2;",
+      "    merge_sort(arr, left, middle);",
+      "    merge_sort(arr, middle+1, right);",
+      "    int temp[right - left + 1];",
+      "    int i = left, j = middle+1, k = 0;",
+      "    while (i <= middle && j <= right) {",
+      "        if (arr[i] < arr[j]) {",
+      "            temp[k++] = arr[i++];",
+      "        } else {",
+      "            temp[k++] = arr[j++];",
+      "        }",
+      "    }",
+      "    while (i <= middle) {",
+      "        temp[k++] = arr[i++];",
+      "    }",
+      "    while (j <= right) {",
+      "        temp[k++] = arr[j++];",
+      "    }",
+      "    for (int i = left, k = 0; i <= right; ++i, ++k) {",
+      "        arr[i] = temp[k];",
+      "    }",
+      "}",
+      ""
+    ],
+    "description": "merge_sort"
+  },
+  "string_reverse": {
+    "prefix": "ggstring_reverse",
+    "body": [
+      "void string_reverse(char *str) {",
+      "    size_t length = string_length(str);",
+      "    for (size_t i = 0, j = length - 1; i < j; ++i, --j) {",
+      "        char temp = str[i];",
+      "        str[i] = str[j];",
+      "        str[j] = temp;",
+      "    }",
+      "}",
+      ""
+    ],
+    "description": "string_reverse"
+  },
+  "string_length": {
+    "prefix": "ggstring_length",
+    "body": [
+      "size_t string_length(const char *str) {",
+      "    size_t length = 0;",
+      "    while (str[length] != '\\0') {",
+      "        ++length;",
+      "    }",
+      "    return length;",
+      "}",
+      ""
+    ],
+    "description": "string_length"
+  },
+  "string_copy": {
+    "prefix": "ggstring_copy",
+    "body": [
+      "void string_copy(char *dest, const char *src) {",
+      "    size_t i = 0;",
+      "    while (src[i] != '\\0') {",
+      "        dest[i] = src[i];",
+      "        ++i;",
+      "    }",
+      "    dest[i] = '\\0';",
+      "}",
+      ""
+    ],
+    "description": "string_copy"
+  },
+  "file_read_line": {
+    "prefix": "ggfile_read_line",
+    "body": [
+      "char *file_read_line(FILE *file) {",
+      "    char *line = NULL;",
+      "    size_t buffer_size = 0;",
+      "    ssize_t line_length = getline(&line, &buffer_size, file);",
+      "    if (line_length < 0) {",
+      "        free(line);",
+      "        line = NULL;",
+      "    } else if (line[line_length - 1] == '\\n') {",
+      "        line[line_length - 1] = '\\0';",
+      "    }",
+      "    return line;",
+      "}",
+      ""
+    ],
+    "description": "file_size: A function that returns the size of a file in bytes."
+  },
+  "file_read_all": {
+    "prefix": "ggfile_read_all",
+    "body": [
+      "char *file_read_all(FILE *file) {",
+      "    char *buffer = NULL;",
+      "    size_t buffer_size = 0;",
+      "    ssize_t file_size = getdelim(&buffer, &buffer_size, EOF, file);",
+      "    if (file_size < 0) {",
+      "        free(buffer);",
+      "        buffer = NULL;",
+      "    } else if (buffer[file_size - 1] == EOF) {",
+      "        buffer[file_size - 1] = '\\0';",
+      "    }",
+      "    return buffer;",
+      "}",
+      ""
+    ],
+    "description": "file_read_line: A function that reads a line of text from a file."
+  },
+  "file_read": {
+    "prefix": "ggfile_read",
+    "body": [
+      "char *file_read(const char *path) {",
+      "    char *contents = NULL;",
+      "    FILE *file = fopen(path, \"rb\");",
+      "    if (file) {",
+      "        long size = file_size(file);",
+      "        if (size > -1) {",
+      "            contents = malloc(size + 1);",
+      "            if (contents) {",
+      "                fread(contents, 1, size, file);",
+      "                contents[size] = '\\0';",
+      "            }",
+      "        }",
+      "        fclose(file);",
+      "    }",
+      "    return contents;",
+      "}",
+      ""
+    ],
+    "description": "file_read: A function that reads the contents of a file into a buffer."
+  },
+  "file_write": {
+    "prefix": "ggfile_write",
+    "body": [
+      "bool file_write(const char *path, const char *contents) {",
+      "    bool success = false;",
+      "    FILE *file = fopen(path, \"wb\");",
+      "    if (file) {",
+      "        size_t length = strlen(contents);",
+      "        size_t bytes_written = fwrite(contents, 1, length, file);",
+      "        if (bytes_written == length) {",
+      "            success = true;",
+      "        }",
+      "        fclose(file);",
+      "    }",
+      "    return success;",
+      "}",
+      ""
+    ],
+    "description": "file_write: A function that writes a string to a file."
+  },
+  "file_append": {
+    "prefix": "ggfile_append",
+    "body": [
+      "bool file_append(const char *path, const char *contents) {",
+      "    bool success = false;",
+      "    FILE *file = fopen(path, \"ab\");",
+      "    if (file) {",
+      "        size_t length = strlen(contents);",
+      "        size_t bytes_written = fwrite(contents, 1, length, file);",
+      "        if (bytes_written == length) {",
+      "            success = true;",
+      "        }",
+      "        fclose(file);",
+      "    }",
+      "    return success;",
+      "}",
+      ""
+    ],
+    "description": "file_append: A function that appends a string to the end of a file."
+  },
+  "file_lines: A function that reads the lines of a text file into an array of strings. c": {
+    "prefix": "ggfile_lines",
+    "body": [
+      "char **file_lines(const char *path, size_t *count) {",
+      "    char **lines = NULL;",
+      "    FILE *file = fopen(path, \"r\");",
+      "    if (file) {",
+      "        char *line;",
+      "        size_t line_count = 0;",
+      "        while ((line = file_read_line(file))) {",
+      "            lines = realloc(lines, (line_count + 1) * sizeof(char *));",
+      "            lines[line_count++] = line;",
+      "        }",
+      "        fclose(file);",
+      "        *count = line_count;",
+      "    }",
+      "    return lines;",
+      "}",
+      ""
+    ],
+    "description": "file_lines: A function that reads the lines of a text file into an array of strings. c"
+  },
+  "struct_init: A function that initializes a structure with default values.": {
+    "prefix": "ggstruct_init",
+    "body": [
+      "void struct_init(struct my_struct *s) {",
+      "    s->value1 = 0;",
+      "    s->value2 = 0;",
+      "    s->value3 = 0;",
+      "}",
+      ""
+    ],
+    "description": "struct_init: A function that initializes a structure with default values."
+  },
+  "struct_copy: A function that copies the values of one structure to another.": {
+    "prefix": "ggstruct_copy",
+    "body": [
+      "void struct_copy(struct my_struct *dest, const struct my_struct *src) {",
+      "    dest->value1 = src->value1;",
+      "    dest->value2 = src->value2;",
+      "    dest->value3 = src->value3;",
+      "}",
+      ""
+    ],
+    "description": "struct_copy: A function that copies the values of one structure to another."
+  },
+  "struct_compare: A function that compares two structures for equality.": {
+    "prefix": "ggstruct_compare",
+    "body": [
+      "bool struct_compare(const struct my_struct *s1, const struct my_struct *s2) {",
+      "    return (s1->value1 == s2->value1) && (s1->value2 == s2->value2) && (s1->value3 == s2->value3);",
+      "}",
+      ""
+    ],
+    "description": "struct_compare: A function that compares two structures for equality."
+  },
+  "struct_print: A function that prints the contents of a structure to the console.": {
+    "prefix": "ggstruct_print",
+    "body": [
+      "void struct_print(const struct my_struct *s) {",
+      "    printf(\"value1: %d\\n\", s->value1);",
+      "    printf(\"value2: %d\\n\", s->value2);",
+      "    printf(\"value3: %d\\n\", s->value3);",
+      "}",
+      ""
+    ],
+    "description": "struct_print: A function that prints the contents of a structure to the console."
+  },
+  "struct_swap: A function that swaps the values of two structures.": {
+    "prefix": "ggstruct_swap",
+    "body": [
+      "void struct_swap(struct my_struct *s1, struct my_struct *s2) {",
+      "    struct my_struct temp = *s1;",
+      "    *s1 = *s2;",
+      "    *s2 = temp;",
+      "}",
+      ""
+    ],
+    "description": "struct_swap: A function that swaps the values of two structures."
+  },
+  "array_find: A function that finds the index of a given value in an array.": {
+    "prefix": "ggarray_find",
+    "body": [
+      "size_t array_find(const int *array, size_t size, int value) {",
+      "    for (size_t i = 0; i < size; i++) {",
+      "        if (array[i] == value) {",
+      "            return i;",
+      "        }",
+      "    }",
+      "    return size;",
+      "}",
+      ""
+    ],
+    "description": "array_find: A function that finds the index of a given value in an array."
+  },
+  "A function that reverses the order of elements in an array.": {
+    "prefix": "ggarray_reverse",
+    "body": [
+      "void array_reverse(int *array, size_t size) {",
+      "    for (size_t i = 0; i < size / 2; i++) {",
+      "        int temp = array[i];",
+      "        array[i] = array[size - i - 1];",
+      "        array[size - i - 1] = temp;",
+      "    }",
+      "}",
+      ""
+    ],
+    "description": "A function that reverses the order of elements in an array."
   }
 }
