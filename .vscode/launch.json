@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/monzim/CodeX/uiuPractice",
-      "program": "/home/monzim/CodeX/uiuPractice/build/Debug/outDebug",
+      "cwd": "/Users/monzim/CodeX/study/uiuPractice/DSA_2215/stack",
+      "program": "/Users/monzim/CodeX/study/uiuPractice/DSA_2215/stack/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
