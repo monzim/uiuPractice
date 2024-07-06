@@ -1,4 +1,3 @@
-// implemented with golang language
 package main
 
 import (
