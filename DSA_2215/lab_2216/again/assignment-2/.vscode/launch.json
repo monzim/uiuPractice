@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/monzim/codeX/learning/uiuPractice/DSA_2215/lab_2216/again/assignment-2",
+      "program": "/Users/monzim/codeX/learning/uiuPractice/DSA_2215/lab_2216/again/assignment-2/build/Debug/outDebug"
+    }
+  ]
+}

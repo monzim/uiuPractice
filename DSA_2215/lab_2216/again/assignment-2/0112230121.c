@@ -1,0 +1,202 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+  int data;
+  struct Node* prev;
+  struct Node* next;
+};
+typedef struct Node Node;
+
+Node* create_node(int data) {
+  Node* new_node = (Node*)malloc(sizeof(Node));
+  new_node->data = data;
+  new_node->prev = NULL;
+  new_node->next = NULL;
+  return new_node;
+}
+
+Node* insert_at_front(Node* head, int data) {
+  Node* new_node = create_node(data);
+  if (head == NULL) {
+    return new_node;
+  }
+  new_node->next = head;
+  head->prev = new_node;
+  return new_node;
+}
+
+Node* insert_at_back(Node* head, int data) {
+  Node* new_node = create_node(data);
+  if (head == NULL) {
+    return new_node;
+  }
+  Node* current = head;
+  while (current->next != NULL) {
+    current = current->next;
+  }
+  current->next = new_node;
+  new_node->prev = current;
+  return head;
+}
+
+Node* insert_in_middle(Node* head, int data, int position) {
+  if (position <= 1) {
+    return insert_at_front(head, data);
+  }
+  Node* new_node = create_node(data);
+  Node* current = head;
+  int count = 1;
+  while (count < position - 1 && current->next != NULL) {
+    current = current->next;
+    count++;
+  }
+  new_node->next = current->next;
+  new_node->prev = current;
+  if (current->next != NULL) {
+    current->next->prev = new_node;
+  }
+  current->next = new_node;
+  return head;
+}
+
+Node* delete_at_front(Node* head) {
+  if (head == NULL) {
+    return NULL;
+  }
+
+  Node* new_head = head->next;
+  if (new_head != NULL) {
+    new_head->prev = NULL;
+  }
+
+    free(head);
+  return new_head;
+}
+
+Node* delete_at_back(Node* head) {
+  if (head == NULL) {
+    return NULL;
+  }
+  if (head->next == NULL) {
+    free(head);
+    return NULL;
+  }
+  Node* current = head;
+  while (current->next->next != NULL) {
+    current = current->next;
+  }
+  free(current->next);
+  current->next = NULL;
+  return head;
+}
+
+Node* delete_from_middle(Node* head, int data) {
+  if (head == NULL) {
+    return NULL;
+  }
+  if (head->data == data) {
+    return delete_at_front(head);
+  }
+  Node* current = head;
+  while (current != NULL && current->data != data) {
+    current = current->next;
+  }
+  if (current == NULL) {
+    return head;
+  }
+  if (current->next == NULL) {
+    return delete_at_back(head);
+  }
+  current->prev->next = current->next;
+  current->next->prev = current->prev;
+  free(current);
+  return head;
+}
+
+void print_list(Node* head) {
+  if (head == NULL) {
+    printf("NULL\n");
+    return;
+  }
+  Node* current = head;
+  while (current != NULL) {
+    printf("%d ", current->data);
+    current = current->next;
+  }
+  printf("\n");
+}
+
+void display_menu() {
+  printf("\nDoubly Linked List Operations:\n");
+  printf("1. Insert at front\n");
+  printf("2. Insert at back\n");
+  printf("3. Insert in middle\n");
+  printf("4. Delete from front\n");
+  printf("5. Delete from back\n");
+  printf("6. Delete from middle\n");
+  printf("7. Print list\n");
+  printf("0. Exit\n");
+  printf("Enter your choice: ");
+}
+
+int main() {
+  Node* head = NULL;
+  int choice, data, position;
+
+  do {
+    display_menu();
+    scanf("%d", &choice);
+
+    switch (choice) {
+      case 1:
+        printf("Enter data to insert at front: ");
+        scanf("%d", &data);
+        head = insert_at_front(head, data);
+        break;
+      case 2:
+        printf("Enter data to insert at back: ");
+        scanf("%d", &data);
+        head = insert_at_back(head, data);
+        break;
+      case 3:
+        printf("Enter data to insert: ");
+        scanf("%d", &data);
+        printf("Enter position to insert at: ");
+        scanf("%d", &position);
+        head = insert_in_middle(head, data, position);
+        break;
+      case 4:
+        head = delete_at_front(head);
+        printf("Deleted from front.\n");
+        break;
+      case 5:
+        head = delete_at_back(head);
+        printf("Deleted from back.\n");
+        break;
+      case 6:
+        printf("Enter data to delete: ");
+        scanf("%d", &data);
+        head = delete_from_middle(head, data);
+        break;
+      case 7:
+        printf("Current list: ");
+        print_list(head);
+        break;
+      case 0:
+        printf("Exiting program.\n");
+        break;
+      default:
+        printf("Invalid choice. Please try again.\n");
+        exit(1);
+    }
+  } while (choice != 0);
+
+  while (head != NULL) {
+    Node* temp = head;
+    head = head->next;
+    free(temp);
+  }
+
+  return 0;
+}

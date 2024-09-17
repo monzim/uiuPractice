@@ -13,9 +13,17 @@ void initialize(Queue *queue) {
   queue->rear = -1;
 }
 
-bool isFull(Queue *queue) { return (queue->rear == MAX_SIZE - 1); }
+bool isFull(Queue *queue) { return ((queue->rear + 1) % MAX_SIZE == queue->front); }
 
 bool isEmpty(Queue *queue) { return (queue->front == -1); }
+
+int currentSize(Queue *queue) {
+  if (isEmpty(queue)) {
+    return 0;
+  }
+
+  return (queue->rear >= queue->front) ? (queue->rear - queue->front + 1) : (MAX_SIZE - queue->front + queue->rear + 1);
+}
 
 bool add(Queue *queue, int item) {
   if (isFull(queue)) {
@@ -24,7 +32,7 @@ bool add(Queue *queue, int item) {
   if (isEmpty(queue)) {
     queue->front = 0;
   }
-  queue->rear++;
+  queue->rear = (queue->rear + 1) % MAX_SIZE;
   queue->data[queue->rear] = item;
   return true;
 }
@@ -35,10 +43,11 @@ int removeEl(Queue *queue) {
   }
   int item = queue->data[queue->front];
   if (queue->front == queue->rear) {
+    // If only one element was left, reset the queue
     queue->front = -1;
     queue->rear = -1;
   } else {
-    queue->front++;
+    queue->front = (queue->front + 1) % MAX_SIZE;
   }
   return item;
 }
@@ -49,32 +58,40 @@ void show(Queue *queue) {
     return;
   }
   printf("Queue elements: ");
-  for (int i = queue->front; i <= queue->rear; i++) {
+  int i = queue->front;
+  while (i != queue->rear) {
     printf("%d ", queue->data[i]);
+    i = (i + 1) % MAX_SIZE;
   }
-  printf("\n");
+  printf("%d\n", queue->data[queue->rear]);  // Print the last element
 }
 
 int middle(Queue *queue) {
   if (isEmpty(queue)) {
     return -1;
   }
-  int fast = queue->front;
   int slow = queue->front;
-  while (fast != -1 && fast != queue->rear) {
-    fast = (fast + 2 <= queue->rear) ? fast + 2 : fast;
-    slow = slow + 1;
+  int fast = queue->front;
+
+  while (fast != queue->rear && (fast + 1) % MAX_SIZE != queue->rear) {
+    fast = (fast + 2) % MAX_SIZE;
+    slow = (slow + 1) % MAX_SIZE;
   }
   return queue->data[slow];
 }
 
 bool search(Queue *queue, int item) {
-  for (int i = queue->front; i <= queue->rear; i++) {
+  if (isEmpty(queue)) {
+    return false;
+  }
+  int i = queue->front;
+  while (i != queue->rear) {
     if (queue->data[i] == item) {
       return true;
     }
+    i = (i + 1) % MAX_SIZE;
   }
-  return false;
+  return (queue->data[queue->rear] == item);  // Check the last element
 }
 
 int main() {

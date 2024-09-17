@@ -18,6 +18,8 @@ bool push(Stack *stack, int item) {
   return true;
 }
 
+bool isFull(Stack *stack) { return stack->top >= MAX_SIZE - 1; }
+
 int pop(Stack *stack) {
   if (stack->top < 0) {
     // Return a sentinel value to indicate an empty stack.
@@ -64,6 +66,16 @@ void display(Stack *stack) {
     printf("%d ", stack->data[i]);
   }
   printf("\n");
+}
+
+void reverse_and_display(Stack *stack) {
+  Stack temp;
+  initialize(&temp);
+  while (stack->top >= 0) {
+    push(&temp, pop(stack));
+  }
+
+  display(&temp);
 }
 
 void useMe() {
